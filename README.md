@@ -11,12 +11,12 @@ Eldorians are inherently peaceful and strive to preserve the pristine beauty of 
 
 
 # Getting Started
-1.Open Visual studio code
+1. Open Visual studio code 
 
-2.Klik op de run knop om het spel te beginnen
+2. Klik op de run knop om het spel te beginnen
 
-3.Volg de instructies op het scherm om verder te gaan in het spel
+3. Volg de instructies op het scherm om verder te gaan in het spel
 
-4.Kies zelf het pad om verder te gaan in het verhaal
+4. Kies zelf het pad om verder te gaan in het verhaal
 
-5.Win de game
+5. Win de game
