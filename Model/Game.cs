@@ -10,6 +10,8 @@ namespace TextAdventureGame.Model
     internal class Game
     {
         static string CharacterName;
+        private static string SaveFileName = Path.Combine(Environment.CurrentDirectory, "savegame.txt");
+        private static string playerLocation = "start";
 
         public static void StartGame()
         {
@@ -67,7 +69,7 @@ namespace TextAdventureGame.Model
             int strengthPoints = 0;
             int romancePoints = 0;
             Console.WriteLine("You wake up on the floor slowly opening your eyes as you see a stranger hovering above you\n");
-            NPCDialog("Hey there are you okay?\n");
+            NpcDialog("Hey there are you okay?\n");
             Console.WriteLine("How do you answer?\n" +
                   "1). I'm okay thank you\n" +
                   "2). No, ofcourse I'm not.\n" +
@@ -80,12 +82,12 @@ namespace TextAdventureGame.Model
             {
                 charismaPoints++;
                 HelpDialog("Good job, you gained charismapoints!, These will help you gain the trust of villagers and keep you on the good path!\n\n");
-                NPCDialog("*Simon looks happy* That's great! Here let me help you up.");
+                NpcDialog("*Simon looks happy* That's great! Here let me help you up.");
                 Console.WriteLine("The strager helps you up and dust of your clothes.");
-                NPCDialog("My name is Simon by the way, what's yours?\n");
-                MCDialog($"My name is {CharacterName}.");
-                MCDialog($"It's nice to meet you Simon, would you mind telling me how I get to the nearest village?");
-                NPCDialog("Ofcourse not! I'll walk you there.");
+                NpcDialog("My name is Simon by the way, what's yours?\n");
+                McDialog($"My name is {CharacterName}.");
+                McDialog($"It's nice to meet you Simon, would you mind telling me how I get to the nearest village?");
+                NpcDialog("Ofcourse not! I'll walk you there.");
                 Console.WriteLine("You and Simon chat while walking towards the village.");
                 Console.ReadLine();
                 Console.Clear();
@@ -103,12 +105,12 @@ namespace TextAdventureGame.Model
             {
                 charismaPoints--;
                 HelpDialog("Oh no, you just lost charismapoints!, if you don't gain enough charismapoints you might lose the trust of the villagers and turn to a dark path. Beware!\n\n");
-                NPCDialog("*Simon looks confused* Owh that's not good.");
+                NpcDialog("*Simon looks confused* Owh that's not good.");
                 Console.WriteLine("You get up and dust of your clothes.");
-                NPCDialog("My name is Simon, what's yours?\n");
-                MCDialog($"My name is {CharacterName}.");
-                MCDialog($"Simon, would you mind telling me how I get to the nearest village?");
-                NPCDialog("No ofcourse not, I'ts straigth ahead, just follow the lake. I have things to atend to, so I''l talk to you later.");
+                NpcDialog("My name is Simon, what's yours?\n");
+                McDialog($"My name is {CharacterName}.");
+                McDialog($"Simon, would you mind telling me how I get to the nearest village?");
+                NpcDialog("No ofcourse not, I'ts straigth ahead, just follow the lake. I have things to atend to, so I''l talk to you later.");
                 Console.WriteLine("Simon leaves and you heas towards the village.\n");
                 Console.ReadLine();
                 Console.Clear();
@@ -119,17 +121,44 @@ namespace TextAdventureGame.Model
                 Console.WriteLine();
                 Console.Write("Your action\n");
                 string action = Console.ReadLine();
+                if (action == "1") 
+                { 
+
+                }
+
+                else
+                {
+                    Console.WriteLine("You walk towards the mountains to leave the village and start climbing up the mountain to reach the top. Whilst climing you see purple fog appearing blurng your vision and numbing your body. You try to hold on but eventually fall down hitting the rocks");
+                    DeathDialog("You died");
+                    HelpDialog("Oh no, you died. You can exit or restart the game");
+                    Console.WriteLine("What do you do?\n" +
+                    "1). Restart\n" +
+                    "2). Exit");
+                    Console.WriteLine();
+                    Console.Write("Your action\n");
+                    string endGame = Console.ReadLine();
+                    if (endGame == "1") 
+                    {
+                        GameProgress();
+                    }
+                    else
+                    {
+                       Environment.Exit(0);
+                    }
+
+                }
+
             }
 
             if (answer == "3")
             {
                 charismaPoints++;
                 HelpDialog("Good job, you gained charismapoints!, These will help you gain the trust of villagers and keep you on the good path!\n\n");
-                NPCDialog("*Simon looks surprised* Owh, you don't know? Your in Elodia! Here let me help you up and then I will tell you more\n");
+                NpcDialog("*Simon looks surprised* Owh, you don't know? Your in Elodia! Here let me help you up and then I will tell you more\n");
                 Console.WriteLine("The strager helps you up and dust of your clothes.");
-                NPCDialog("My name is Simon by the way, what's yours?\n");
-                MCDialog($"My name is {CharacterName}.\n");
-                NPCDialog($"Well it's lovely to meet you {CharacterName}. Let's head to the village and I'll get you updated on the lovely world of Elodia!\n");
+                NpcDialog("My name is Simon by the way, what's yours?\n");
+                McDialog($"My name is {CharacterName}.\n");
+                NpcDialog($"Well it's lovely to meet you {CharacterName}. Let's head to the village and I'll get you updated on the lovely world of Elodia!\n");
                 Console.ReadLine();
                 Console.Clear();
                 Console.WriteLine("You walk alongside a raging river until you arrive at a beautifull village with light colored houses and blue roofs surounded by nature and wildlife. At the center of the village lies a beautifull pond surounded by plants.");
@@ -148,11 +177,11 @@ namespace TextAdventureGame.Model
                 romancePoints++;
                 HelpDialog("You gained romancepoints! This will unlock some secret dialog and maybe even a secret ending!\n");
                 HelpDialog("Good job, you gained charismapoints!, These will help you gain the trust of villagers and keep you on the good path!\n\n");
-                NPCDialog("*Simon looks surprised* My name is Simon, here let me help you up!\n");
+                NpcDialog("*Simon looks surprised* My name is Simon, here let me help you up!\n");
                 Console.WriteLine("Simon helps you up and dusts of your clothes.");
-                MCDialog($"My name is {CharacterName} by the way.\n");
-                NPCDialog($"Nice to meet you {CharacterName}! Why don't we walk towards my village I can tell you more about myself on the way there.\n");
-                MCDialog("Sure, lets go!");
+                McDialog($"My name is {CharacterName} by the way.\n");
+                NpcDialog($"Nice to meet you {CharacterName}! Why don't we walk towards my village I can tell you more about myself on the way there.\n");
+                McDialog("Sure, lets go!");
                 Console.ReadLine();
                 Console.Clear();
                 Console.WriteLine("You walk alongside a raging river until you arrive at a beautifull village with light colored houses and blue roofs surounded by nature and wildlife. At the center of the village lies a beautifull pond surounded by plants.");
@@ -167,15 +196,63 @@ namespace TextAdventureGame.Model
 
 
         }
+        static void SaveGame()
+        {
+            try
+            {
+                string gameDataToSave = $"PlayerLocation:{playerLocation}";
 
-        static void NPCDialog(string message)
+                File.WriteAllText(SaveFileName, gameDataToSave);
+
+                Console.WriteLine("Spel opgeslagen.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Er is een fout opgetreden bij het opslaan van het spel: " + ex.Message);
+            }
+        }
+
+        static void ResumeGame()
+        {
+            string savedGameData = File.ReadAllText(SaveFileName);
+
+
+            string[] savedDataParts = savedGameData.Split(',');
+
+            foreach (string dataPart in savedDataParts)
+            {
+                string[] keyValue = dataPart.Split(':');
+                string key = keyValue[0];
+                string value = keyValue[1];
+
+                if (key == "PlayerLocation")
+                {
+                    playerLocation = value;
+                }
+            }
+            Console.WriteLine("Je hervat het opgeslagen spel op locatie: " + playerLocation);
+        }
+
+        static void DeathDialog(string message)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write(message);
+            Console.ResetColor();
+        }
+        static void WinDialog(string message)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write(message);
+            Console.ResetColor();
+        }
+        static void NpcDialog(string message)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write(message);
             Console.ResetColor();
         }
 
-        static void MCDialog(string message)
+        static void McDialog(string message)
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.Write(message);
